@@ -59,7 +59,7 @@ def generate_sin_wave(sample_rate, frequency, duration, amplitude):
     samples_num = int(duration * sample_rate)
     volume = amplitude * 32767
     for n in range(samples_num):
-        value = math.sin(2 * math.pi * n * frequency / sample_rate)
+        value = math.sin(2 * math.pi * n * frequency / sample_rate / 2)
         data.append(int(value * volume))
     return data
 
@@ -74,7 +74,7 @@ def generate_r2d2_message(filename):
         r2d2_message.append(note_freqs[random.randint(0, len(note_freqs) - 1)])
 
     sample_rate = 8000  # 8000 Hz
-    dot_dur = 0.080  # 80 ms
+    dot_dur = 0.160  # 80 ms
     volume = 0.10  # 80%
 
     wave = WaveFile(sample_rate)
