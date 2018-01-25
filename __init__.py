@@ -135,7 +135,7 @@ class PoliteSkill(FallbackSkill):
         super(PoliteSkill, self).__init__()
 
     def initialize(self):
-        self.register_fallback(self.handle_fallback, 80)
+        self.register_fallback(self.handle_fallback, 75)
 
     def say(self,text,lang):
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
