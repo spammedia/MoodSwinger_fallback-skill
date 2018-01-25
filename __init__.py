@@ -18,7 +18,7 @@ __author__ = 'tjoen'
 
 LOGGER = getLogger(__name__)
 
-DEFAULT_TEXT = "<volume level='50'><pitch level='180'>"
+DEFAULT_TEXT = "<volume level='50'><pitch level='80'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
 uri = 'ws://localhost:8181/core'
@@ -73,7 +73,7 @@ def generate_r2d2_message(filename):
     for _ in range(random.randint(min_msg_len, max_msg_len)):
         r2d2_message.append(note_freqs[random.randint(0, len(note_freqs) - 1)])
 
-    sample_rate = 8000  # 8000 Hz
+    sample_rate = 4000  # 8000 Hz
     dot_dur = 0.160  # 80 ms
     volume = 0.10  # 80%
 
