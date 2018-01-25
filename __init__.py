@@ -130,9 +130,9 @@ class WaveFile(object):
                 sound_data = struct.pack('<h', d)
                 f.write(sound_data)
 
-class SarcasmSkill(FallbackSkill):
+class PoliteSkill(FallbackSkill):
     def __init__(self):
-        super(SarcasmSkill, self).__init__()
+        super(PoliteSkill, self).__init__()
 
     def initialize(self):
         self.register_fallback(self.handle_fallback, 80)
@@ -182,4 +182,4 @@ class SarcasmSkill(FallbackSkill):
 
 
 def create_skill():
-    return SarcasmSkill()
+    return PoliteSkill()
