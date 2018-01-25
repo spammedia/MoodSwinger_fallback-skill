@@ -177,7 +177,7 @@ class SarcasmSkill(FallbackSkill):
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
         else:
-            self.speak_dialog('sarcasm', {'talk': txt})
+            self.speak_dialog('polite', {'talk': txt})
         return True
 
 
