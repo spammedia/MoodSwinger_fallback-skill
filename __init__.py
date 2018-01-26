@@ -15,14 +15,14 @@ import struct
 import sys
 from websocket import create_connection
 
-__author__ = 'tjoen'
+__author__ = 'Barricados'
 
 LOGGER = getLogger(__name__)
 
 DEFAULT_TEXT = "<volume level='50'><pitch level='80'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
-filename2 = 'joking.wav'
+filename2 = '/opt/mycroft/skills/samples/joking.wav'
 uri = 'ws://localhost:8181/core'
 
 note_freqs = [
@@ -140,7 +140,7 @@ class PoliteSkill(FallbackSkill):
         self.register_fallback(self.handle_fallback, 75)
 
     def play2(self, filename2):
-        play_wav( self.settings.get('/opt/mycroft/skills/fallback-polite/samples/')+filename2 )
+        play_wav( self.filename2 )
         
     def say(self,text,lang):
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
