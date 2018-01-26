@@ -22,7 +22,7 @@ LOGGER = getLogger(__name__)
 DEFAULT_TEXT = "<volume level='50'><pitch level='80'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
-filename2 = '/opt/mycroft/skills/samples/joking.wav'
+#filename2 = '/opt/mycroft/skills/samples/joking.wav'
 uri = 'ws://localhost:8181/core'
 
 note_freqs = [
@@ -139,8 +139,8 @@ class PoliteSkill(FallbackSkill):
     def initialize(self):
         self.register_fallback(self.handle_fallback, 75)
 
-    def play2(self, filename2):
-        play_wav( self.filename2 )
+    #def play2(self, filename2):
+        #play_wav( self.filename2 )
         
     def say(self,text,lang):
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
@@ -181,7 +181,7 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            self.play2(filename2)
+            self.play('/opt/mycroft/skills/samples/joking.wav')
         else:
             self.speak_dialog('polite', {'talk': txt})
         return True
