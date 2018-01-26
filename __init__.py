@@ -180,7 +180,7 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            self.play( 'joking.wav' )
+            self.play( 'samples/joking.wav' )
         else:
             self.speak_dialog('polite', {'talk': txt})
         return True
