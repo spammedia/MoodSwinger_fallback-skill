@@ -4,8 +4,8 @@
 
 
 from mycroft.skills.core import FallbackSkill
-from mycroft.util.log import getLogger
 from mycroft.util import play_wav
+from mycroft.util.log import getLogger
 import tempfile
 import subprocess
 import os
@@ -139,7 +139,7 @@ class PoliteSkill(FallbackSkill):
         self.register_fallback(self.handle_fallback, 75)
 
     def play(self, filename):
-        play_wav( self.settings.get('resdir')+filename )
+        play_wav( self.settings.get('samples')+filename )
         
     def say(self,text,lang):
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
@@ -180,7 +180,7 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            self.play( 'samples/joking.wav' )
+            self.play( 'joking.wav' )
         else:
             self.speak_dialog('polite', {'talk': txt})
         return True
