@@ -3,7 +3,6 @@
 # Install prereq picotts with 'sudo apt-get libttspico-utils' first
 
 
-from mycroft.skills.audioservice import AudioService
 from mycroft.skills.core import FallbackSkill
 from mycroft.util.log import getLogger
 import tempfile
@@ -137,7 +136,6 @@ class PoliteSkill(FallbackSkill):
 
     def initialize(self):
         self.register_fallback(self.handle_fallback, 75)
-        self.audio_service = AudioService(self.emitter)
 
     def say(self,text,lang):
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
@@ -178,7 +176,6 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            self.audio_service.play(http://www.barricados.com/samples/joking.mp3)
         else:
             self.speak_dialog('polite', {'talk': txt})
         return True
