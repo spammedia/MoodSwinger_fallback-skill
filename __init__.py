@@ -139,6 +139,13 @@ class PoliteSkill(FallbackSkill):
     def initialize(self):
         self.register_fallback(self.handle_fallback, 75)
 
+    @intent_handler(IntentBuilder("SetAttitudeIntent").require("SetAttitudeKeyword"))
+    def handle_set_attitude_intent(self, message):
+        self.speak_dialog("tellattitude")
+    
+    def stop(self):
+        pass
+    
     #def play2(self, filename2):
         #play_wav( self.filename2 )
         
