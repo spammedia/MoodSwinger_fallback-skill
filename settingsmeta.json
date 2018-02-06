@@ -1,0 +1,24 @@
+{
+    "name": "Attitude Control",
+    "skillMetadata": {
+        "sections": [
+            {
+                "name": "Attitude:",
+                "fields": [
+                    {
+                        "name": "Sassi",
+                        "type": "Number",
+                        "label": "Number",
+                        "value": "1"
+                    },
+                    {
+                        "name": "Classy",
+                        "type": "Number",
+                        "label": "Number",
+                        "value": "0"
+                    }
+                ]
+            }
+        ]
+    }
+}
