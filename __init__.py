@@ -14,6 +14,8 @@ import math
 import random
 import struct
 import sys
+# import requests
+# import json
 from websocket import create_connection
 
 __author__ = 'Barricados'
