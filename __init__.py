@@ -2,7 +2,8 @@
 # Add more sarcasm to your Mycroft
 # Install prereq picotts with 'sudo apt-get libttspico-utils' first
 
-
+from adapt.intent import IntentBuilder
+from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.skills.core import FallbackSkill
 from mycroft.util import play_wav
 from mycroft.util.log import getLogger
