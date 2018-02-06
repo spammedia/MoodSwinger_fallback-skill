@@ -8,13 +8,13 @@
                     {
                         "name": "Sassi",
                         "type": "Number",
-                        "label": "Number",
+                        "label": "sassi",
                         "value": "1"
                     },
                     {
                         "name": "Classy",
                         "type": "Number",
-                        "label": "Number",
+                        "label": "classy",
                         "value": "0"
                     }
                 ]
