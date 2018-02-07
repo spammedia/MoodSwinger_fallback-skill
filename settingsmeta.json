@@ -6,16 +6,10 @@
                 "name": "Attitude:",
                 "fields": [
                     {
-                        "name": "Sassi",
-                        "type": "Number",
-                        "label": "Sarcastic",
-                        "value": "1"
-                    },
-                    {
-                        "name": "Classy",
-                        "type": "Number",
-                        "label": "Polite",
-                        "value": "0"
+                        "name": "CurrentAttitude",
+                        "type": "Text",
+                        "label": "Mycroft's mood",
+                        "value": "Sassi"
                     }
                 ]
             }
