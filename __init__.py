@@ -153,6 +153,8 @@ class PoliteSkill(FallbackSkill):
         #self.speak_dialog("tellattitude1")
         #self.settings['CurrentAttitude'] = 'Sassi'
         CurrentAttitude = 'Sassi'
+        moodtxt = 'sarcasm'
+        voicepitch = 'DEFAULT_TEXT'
         self.speak(CurrentAttitude)
     
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
@@ -160,6 +162,8 @@ class PoliteSkill(FallbackSkill):
         #self.speak_dialog("tellattitude2")
         #self.settings['CurrentAttitude'] = 'Classy'
         CurrentAttitude = 'Classy'
+        moodtxt = 'polite'
+        voicepitch = 'DEFAULT_TEXT2'
         self.speak(CurrentAttitude)
     
     def stop(self):
@@ -203,12 +207,6 @@ def handle_fallback(self, message):
         txt = message.data.get("utterance")
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if CurrentAttitude == "Sassi":
-            moodtxt = 'sarcasm'
-            voicepitch = 'DEFAULT_TEXT'
-        if CurrentAttitude == "Classy":
-            moodtxt = 'polite'
-            voicepitch = 'DEFAULT_TEXT2'
         if rnd == 1:
             self.say(voicepitch + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
