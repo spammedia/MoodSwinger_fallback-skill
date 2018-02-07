@@ -142,7 +142,7 @@ class PoliteSkill(FallbackSkill):
 
     def initialize(self):
         self.register_fallback(self.handle_fallback, 75)
-        currentAttitude = self.settings.get("CurrentAttitude", "")
+        CurrentAttitude = self.settings.get("CurrentAttitude", "")
 
     @intent_handler(IntentBuilder("SetAttitudeIntent1").require("SetAttitudeKeyword1"))
     def handle_set_attitude_intent1(self, message):
