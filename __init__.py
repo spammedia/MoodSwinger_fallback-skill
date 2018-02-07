@@ -145,9 +145,10 @@ class PoliteSkill(FallbackSkill):
 
     @intent_handler(IntentBuilder("SetAttitudeIntent1").require("SetAttitudeKeyword1"))
     def handle_set_attitude_intent1(self, message):
-        self.speak_dialog("tellattitude1")
+        #self.speak_dialog("tellattitude1")
         #self.settings['CurrentAttitude'] = 'Sassi'
         CurrentAttitude = 'Sassi'
+        self.speak(CurrentAttitude)
     
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
     def handle_set_attitude_intent2(self, message):
