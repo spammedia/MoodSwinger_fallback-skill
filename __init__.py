@@ -153,8 +153,8 @@ class PoliteSkill(FallbackSkill):
         #self.speak_dialog("tellattitude1")
         #self.settings['CurrentAttitude'] = 'Sassi'
         CurrentAttitude = 'Sassi'
-        moodtxt = 'sarcasm'
-        voicepitch = 'DEFAULT_TEXT'
+        #moodtxt = 'sarcasm'
+        #voicepitch = 'DEFAULT_TEXT'
         self.speak(CurrentAttitude)
     
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
@@ -162,8 +162,8 @@ class PoliteSkill(FallbackSkill):
         #self.speak_dialog("tellattitude2")
         #self.settings['CurrentAttitude'] = 'Classy'
         CurrentAttitude = 'Classy'
-        moodtxt = 'polite'
-        voicepitch = 'DEFAULT_TEXT2'
+        #moodtxt = 'polite'
+        #voicepitch = 'DEFAULT_TEXT2'
         self.speak(CurrentAttitude)
     
     def stop(self):
@@ -207,13 +207,30 @@ def handle_fallback(self, message):
         txt = message.data.get("utterance")
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if rnd == 1:
-            self.say(voicepitch + txt,DEFAULT_LANGUAGE)
-        elif rnd == 2:
-            self.r2d2talk('/tmp/r2d2.wav')
+        if CurrentAttitude == 'Sassi':
+            if rnd == 1:
+                self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
+            elif rnd == 2:
+                self.r2d2talk('/tmp/r2d2.wav')
+            else:
+                self.speak_dialog('sarcasm', {'talk': txt})
+            return True
+        elif CurrentAttitude == 'Classy':
+            if rnd == 1:
+                self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
+            elif rnd == 2:
+                self.r2d2talk('/tmp/r2d2.wav')
+            else:
+                self.speak_dialog('polite', {'talk': txt})
+            return True
         else:
-            self.speak_dialog(moodtxt, {'talk': txt})
-        return True
+            if rnd == 1:
+                self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
+            elif rnd == 2:
+                self.r2d2talk('/tmp/r2d2.wav')
+            else:
+                self.speak_dialog('sarcasm', {'talk': txt})
+            return True
 
 
 def create_skill():
