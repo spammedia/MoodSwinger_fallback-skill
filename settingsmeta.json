@@ -3,13 +3,16 @@
     "skillMetadata": {
         "sections": [
             {
-                "name": "Options:",
+                "name": "Change Mycroft's mood",
                 "fields": [
                     {
+                        "type": "label",
+                        "label": "Choose between the following attitudes:<ul><li>Sassi (sarcasm)</li><li>Classy (polite)</li>"
+                    },
+                    {
                         "name": "CurrentAttitude",
-                        "type": "Text",
-                        "label": "Sassi (sarcasm) - Classy (polite)",
-                        "placeholder": "Choose between the following attitudes: Sassi (sarcasm) - Classy (polite)",
+                        "type": "text",
+                        "label": "Mood",
                         "value": "Sassi"
                     }
                 ]
