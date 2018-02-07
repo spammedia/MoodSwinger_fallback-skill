@@ -203,16 +203,16 @@ class PoliteSkill(FallbackSkill):
         txt = message.data.get("utterance")
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if rnd == 1 and CurrentAttitude == "Sassi":
+        if rnd == 1 and CurrentAttitude is "Sassi":
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-        elif rnd == 1 and CurrentAttitude == "Classy":
+        elif rnd == 1 and CurrentAttitude is "Classy":
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
             # self.play('/opt/mycroft/skills/samples/joking.wav')
-        elif rnd == 3 and CurrentAttitude == "Sassi":
+        elif rnd == 3 and CurrentAttitude is "Sassi":
             self.speak_dialog('sarcasm', {'talk': txt})
-        elif rnd == 3 and CurrentAttitude == "Classy":
+        elif rnd == 3 and CurrentAttitude is "Classy":
             self.speak_dialog('polite', {'talk': txt})
         return True
 
