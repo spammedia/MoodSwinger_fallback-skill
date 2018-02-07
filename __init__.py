@@ -201,9 +201,12 @@ class PoliteSkill(FallbackSkill):
                 self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            self.play('/opt/mycroft/skills/samples/joking.wav')
+            # self.play('/opt/mycroft/skills/samples/joking.wav')
         else:
-            self.speak_dialog('polite', {'talk': txt})
+            if self.settings['CurrentAttitude'] == 'Sassi':
+                self.speak_dialog('sarcastic', {'talk': txt})
+            elif self.settings['CurrentAttitude'] == 'Classy':
+                self.speak_dialog('polite', {'talk': txt})
         return True
 
 
