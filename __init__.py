@@ -142,7 +142,7 @@ class PoliteSkill(FallbackSkill):
 
     def initialize(self):
         self.register_fallback(self.handle_fallback, 75)
-        #CurrentAttitude = self.settings.get("CurrentAttitude", "")
+        # CurrentAttitude = self.settings.get("CurrentAttitude", "")
 
     #def __get_attitude(self):
        # meAttitude = self.settings.get("CurrentAttitude", "")
@@ -151,20 +151,20 @@ class PoliteSkill(FallbackSkill):
     @intent_handler(IntentBuilder("SetAttitudeIntent1").require("SetAttitudeKeyword1"))
     def handle_set_attitude_intent1(self, message):
         #self.speak_dialog("tellattitude1")
-        #self.settings['CurrentAttitude'] = 'Sassi'
         CurrentAttitude = 'Sassi'
-        #moodtxt = 'sarcasm'
-        #voicepitch = 'DEFAULT_TEXT'
         self.speak(CurrentAttitude)
+        #self.settings['CurrentAttitude'] = 'Sassi'
+        #moodtxt = 'sarcasm'
+        #voicepitch = 'DEFAULT_TEXT'     
     
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
     def handle_set_attitude_intent2(self, message):
         #self.speak_dialog("tellattitude2")
-        #self.settings['CurrentAttitude'] = 'Classy'
         CurrentAttitude = 'Classy'
-        #moodtxt = 'polite'
-        #voicepitch = 'DEFAULT_TEXT2'
         self.speak(CurrentAttitude)
+        #self.settings['CurrentAttitude'] = 'Classy'
+        #moodtxt = 'polite'
+        #voicepitch = 'DEFAULT_TEXT2'  
     
     def stop(self):
         pass
@@ -203,34 +203,22 @@ class PoliteSkill(FallbackSkill):
             f.seek(0)
             output = f.read()
 
-def handle_fallback(self, message):
+    def handle_fallback(self, message):
         txt = message.data.get("utterance")
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if CurrentAttitude == 'Sassi':
-            if rnd == 1:
-                self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-            elif rnd == 2:
-                self.r2d2talk('/tmp/r2d2.wav')
-            else:
-                self.speak_dialog('sarcasm', {'talk': txt})
-            return True
-        elif CurrentAttitude == 'Classy':
-            if rnd == 1:
-                self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
-            elif rnd == 2:
-                self.r2d2talk('/tmp/r2d2.wav')
-            else:
-                self.speak_dialog('polite', {'talk': txt})
-            return True
-        else:
-            if rnd == 1:
-                self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-            elif rnd == 2:
-                self.r2d2talk('/tmp/r2d2.wav')
-            else:
-                self.speak_dialog('sarcasm', {'talk': txt})
-            return True
+        if rnd == 1 and CurrentAttitude is "Sassi":
+            self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
+        elif rnd == 1 and CurrentAttitude is "Classy":
+            self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
+        elif rnd == 2:
+            self.r2d2talk('/tmp/r2d2.wav')
+            # self.play('/opt/mycroft/skills/samples/joking.wav')
+        elif rnd == 3 and CurrentAttitude is "Sassi":
+            self.speak_dialog('sarcasm', {'talk': txt})
+        elif rnd == 3 and CurrentAttitude is "Classy":
+            self.speak_dialog('polite', {'talk': txt})
+        return True
 
 
 def create_skill():
