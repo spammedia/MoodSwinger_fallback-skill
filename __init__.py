@@ -204,7 +204,7 @@ class PoliteSkill(FallbackSkill):
             # self.play('/opt/mycroft/skills/samples/joking.wav')
         else:
             if self.settings['CurrentAttitude'] == 'Sassi':
-                self.speak_dialog('sarcastic', {'talk': txt})
+                self.speak_dialog('sarcasm', {'talk': txt})
             elif self.settings['CurrentAttitude'] == 'Classy':
                 self.speak_dialog('polite', {'talk': txt})
         return True
