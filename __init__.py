@@ -146,12 +146,14 @@ class PoliteSkill(FallbackSkill):
     @intent_handler(IntentBuilder("SetAttitudeIntent1").require("SetAttitudeKeyword1"))
     def handle_set_attitude_intent1(self, message):
         self.speak_dialog("tellattitude1")
-        self.settings['CurrentAttitude'] = 'Sassi'
+        #self.settings['CurrentAttitude'] = 'Sassi'
+        CurrentAttitude = 'Sassi'
     
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
     def handle_set_attitude_intent2(self, message):
         self.speak_dialog("tellattitude2")
-        self.settings['CurrentAttitude'] = 'Classy'
+        #self.settings['CurrentAttitude'] = 'Classy'
+        CurrentAttitude = 'Classy'
     
     def stop(self):
         pass
@@ -195,17 +197,17 @@ class PoliteSkill(FallbackSkill):
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
         if rnd == 1:
-            if self.settings['CurrentAttitude'] == 'Sassi':
+            if CurrentAttitude == 'Sassi':
                 self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-            elif self.settings['CurrentAttitude'] == 'Classy':
+            elif CurrentAttitude == 'Classy':
                 self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
             # self.play('/opt/mycroft/skills/samples/joking.wav')
         else:
-            if self.settings['CurrentAttitude'] == 'Sassi':
+            if CurrentAttitude == 'Sassi':
                 self.speak_dialog('sarcasm', {'talk': txt})
-            elif self.settings['CurrentAttitude'] == 'Classy':
+            elif CurrentAttitude == 'Classy':
                 self.speak_dialog('polite', {'talk': txt})
         return True
 
