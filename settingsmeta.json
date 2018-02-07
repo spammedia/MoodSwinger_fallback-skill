@@ -1,14 +1,15 @@
 {
-    "name": "Attitude Control",
+    "name": "Mood Swinger",
     "skillMetadata": {
         "sections": [
             {
-                "name": "Attitude:",
+                "name": "Options:",
                 "fields": [
                     {
                         "name": "CurrentAttitude",
                         "type": "Text",
                         "label": "Mycroft's mood",
+                        "placeholder": "Choose between the following attitudes: Sassi (sarcasm) - Classy (polite)",
                         "value": "Sassi"
                     }
                 ]
