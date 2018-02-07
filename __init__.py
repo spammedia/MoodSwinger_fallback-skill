@@ -142,33 +142,22 @@ class PoliteSkill(FallbackSkill):
 
     def initialize(self):
         self.register_fallback(self.handle_fallback, 75)
-        # CurrentAttitude = self.settings.get("CurrentAttitude", "")
-
-    #def __get_attitude(self):
-       # meAttitude = self.settings.get("CurrentAttitude", "")
-       # return meAttitude    
-        
+     
     @intent_handler(IntentBuilder("SetAttitudeIntent1").require("SetAttitudeKeyword1"))
     def handle_set_attitude_intent1(self, message):
         #self.speak_dialog("tellattitude1")
         CurrentAttitude = 'Sassi'
-        self.speak(CurrentAttitude)
-        #self.settings['CurrentAttitude'] = 'Sassi'
-        #moodtxt = 'sarcasm'
-        #voicepitch = 'DEFAULT_TEXT'     
-    
+        self.speak(CurrentAttitude)     
+
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
     def handle_set_attitude_intent2(self, message):
         #self.speak_dialog("tellattitude2")
         CurrentAttitude = 'Classy'
         self.speak(CurrentAttitude)
-        #self.settings['CurrentAttitude'] = 'Classy'
-        #moodtxt = 'polite'
-        #voicepitch = 'DEFAULT_TEXT2'  
-    
+
     def stop(self):
         pass
-    
+
     #def play2(self, filename2):
         #play_wav( self.filename2 )
         
