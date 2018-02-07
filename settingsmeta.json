@@ -8,7 +8,7 @@
                     {
                         "name": "CurrentAttitude",
                         "type": "Text",
-                        "label": "Mycroft's mood",
+                        "label": "Sassi (sarcasm) - Classy (polite)",
                         "placeholder": "Choose between the following attitudes: Sassi (sarcasm) - Classy (polite)",
                         "value": "Sassi"
                     }
