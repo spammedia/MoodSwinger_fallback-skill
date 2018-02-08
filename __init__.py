@@ -7,6 +7,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.skills.core import FallbackSkill
 from mycroft.util import play_wav
 from mycroft.util.log import getLogger
+from mycroft.api import Api
 import tempfile
 import subprocess
 import os
@@ -145,15 +146,17 @@ class PoliteSkill(FallbackSkill):
      
     @intent_handler(IntentBuilder("SetAttitudeIntent1").require("SetAttitudeKeyword1"))
     def handle_set_attitude_intent1(self, message):
-        self.speak_dialog("tellattitude1")
-        CurrentAttitude = 1
-        #self.speak(CurrentAttitude)     
+        #self.speak_dialog("tellattitude1")
+        CurrentAttitude = 'Sassi'
+        self.settings['CurrentAttitude'] = 'Sassi'
+        self.speak(CurrentAttitude)     
 
     @intent_handler(IntentBuilder("SetAttitudeIntent2").require("SetAttitudeKeyword2"))
     def handle_set_attitude_intent2(self, message):
-        self.speak_dialog("tellattitude2")
-        CurrentAttitude = 2
-        #self.speak(CurrentAttitude)
+        #self.speak_dialog("tellattitude2")
+        CurrentAttitude = 'Classy'
+        self.settings['CurrentAttitude'] = 'Classy'
+        self.speak(CurrentAttitude)
 
     def stop(self):
         pass
@@ -194,18 +197,20 @@ class PoliteSkill(FallbackSkill):
 
     def handle_fallback(self, message):
         txt = message.data.get("utterance")
+        self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
+        self.speak( self.settings['CurrentAttitude'] )
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if rnd == 1 and CurrentAttitude == 1:
+        if rnd == 1 and CurrentAttitude is 'Sassi':
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-        elif rnd == 1 and CurrentAttitude == 2:
+        elif rnd == 1 and CurrentAttitude is 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
             # self.play('/opt/mycroft/skills/samples/joking.wav')
-        elif rnd == 3 and CurrentAttitude == 1:
+        elif rnd == 3 and CurrentAttitude is 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
-        elif rnd == 3 and CurrentAttitude == 2:
+        elif rnd == 3 and CurrentAttitude is 'Classy':
             self.speak_dialog('polite', {'talk': txt})
         return True
 
