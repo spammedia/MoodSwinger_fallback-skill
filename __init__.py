@@ -23,7 +23,8 @@ __author__ = 'Barricados'
 
 LOGGER = getLogger(__name__)
 
-meMood = self.settings.get("CurrentAttitude")
+#meMood = self.settings.get("CurrentAttitude")
+meMood = 'Sassi'
 DEFAULT_TEXT = "<volume level='50'><pitch level='160'>"
 DEFAULT_TEXT2 = "<volume level='50'><pitch level='80'>"
 DEFAULT_LANGUAGE = 'en-GB'
@@ -202,16 +203,16 @@ class PoliteSkill(FallbackSkill):
         self.speak(self.settings['CurrentAttitude'])
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if rnd == 1 and meMood is 'Sassi':
+        if rnd == 1 and meMood == 'Sassi':
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-        elif rnd == 1 and meMood is 'Classy':
+        elif rnd == 1 and meMood == 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
             # self.play('/opt/mycroft/skills/samples/joking.wav')
-        elif rnd == 3 and meMood is 'Sassi':
+        elif rnd == 3 and meMood == 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
-        elif rnd == 3 and meMood is 'Classy':
+        elif rnd == 3 and meMood == 'Classy':
             self.speak_dialog('polite', {'talk': txt})
         return True
 
