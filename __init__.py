@@ -199,6 +199,7 @@ class PoliteSkill(FallbackSkill):
 
     def handle_fallback(self, message):
         txt = message.data.get("utterance")
+        meMood = self.settings.get("CurrentAttitude", "")
         #self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
         self.speak(self.settings['CurrentAttitude'])
         rnd = random.randint(1, 3)
