@@ -25,8 +25,8 @@ LOGGER = getLogger(__name__)
 
 #meMood = self.settings.get("CurrentAttitude")
 #meMood = 'Sassi'
-DEFAULT_TEXT = "<volume level='50'><pitch level='160'>"
-DEFAULT_TEXT2 = "<volume level='50'><pitch level='80'>"
+DEFAULT_TEXT = "<volume level='50'><pitch level='170'>"
+DEFAULT_TEXT2 = "<volume level='50'><pitch level='40'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
 #filename2 = '/opt/mycroft/skills/samples/joking.wav'
