@@ -94,29 +94,6 @@ def generate_r2d2_message(filename):
         wave_data += generate_sin_wave(sample_rate, freq, dot_dur, volume)
     wave.add_data_subchunk(wave_duration, wave_data)
     wave.save(filename)
- 
-def generate_r2d2_message2(filename):
-    """
-    Generate R2D2 message and save to `filename`
-    """
-    min_msg_len = 1
-    max_msg_len = 20
-    r2d2_message = []
-    for _ in range(random.randint(min_msg_len, max_msg_len)):
-        r2d2_message.append(note_freqs[random.randint(0, len(note_freqs) - 1)])
-
-    sample_rate = 2000  # 8000 Hz
-    dot_dur = 1.20  # 80 ms
-    volume = 0.10  # 80%
-
-    wave = WaveFile(sample_rate)
-    wave_duration = 0
-    wave_data = []
-    for freq in r2d2_message:
-        wave_duration += dot_dur
-        wave_data += generate_sin_wave(sample_rate, freq, dot_dur, volume)
-    wave.add_data_subchunk(wave_duration, wave_data)
-    wave.save(filename)
 
 class WaveFile(object):
     """
@@ -239,11 +216,9 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 1 and self.settings['CurrentAttitude'] == 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
-        elif rnd == 2 and self.settings['CurrentAttitude'] == 'Sassi':
+        elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-        elif rnd == 2 and self.settings['CurrentAttitude'] == 'Classy':
-            self.r2d2talk2('/tmp/r2d2.wav')
-            # self.play('/opt/mycroft/skills/samples/joking.wav')
+            #self.play('/opt/mycroft/skills/samples/joking.wav')
         elif rnd == 3 and self.settings['CurrentAttitude'] == 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
         elif rnd == 3 and self.settings['CurrentAttitude'] == 'Classy':
