@@ -199,21 +199,21 @@ class PoliteSkill(FallbackSkill):
 
     def handle_fallback(self, message):
         txt = message.data.get("utterance")
-        meMood = self.settings.get("CurrentAttitude", "")
+        #meMood = self.settings.get("CurrentAttitude", "")
         #self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
-        self.speak(self.settings['CurrentAttitude'])
+        #self.speak(self.settings['CurrentAttitude'])
         rnd = random.randint(1, 3)
         LOGGER.debug("The message data is: {}".format(message.data))
-        if rnd == 1 and meMood == 'Sassi':
+        if rnd == 1 and self.settings['CurrentAttitude'] is 'Sassi':
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-        elif rnd == 1 and meMood == 'Classy':
+        elif rnd == 1 and self.settings['CurrentAttitude'] is 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
             # self.play('/opt/mycroft/skills/samples/joking.wav')
-        elif rnd == 3 and meMood == 'Sassi':
+        elif rnd == 3 and self.settings['CurrentAttitude'] is 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
-        elif rnd == 3 and meMood == 'Classy':
+        elif rnd == 3 and self.settings['CurrentAttitude'] is 'Classy':
             self.speak_dialog('polite', {'talk': txt})
         return True
 
