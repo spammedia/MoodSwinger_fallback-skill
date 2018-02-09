@@ -24,7 +24,7 @@ __author__ = 'Barricados'
 LOGGER = getLogger(__name__)
 
 #meMood = self.settings.get("CurrentAttitude")
-meMood = 'Sassi'
+#meMood = 'Sassi'
 DEFAULT_TEXT = "<volume level='50'><pitch level='160'>"
 DEFAULT_TEXT2 = "<volume level='50'><pitch level='80'>"
 DEFAULT_LANGUAGE = 'en-GB'
