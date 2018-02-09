@@ -23,14 +23,14 @@ __author__ = 'Barricados'
 
 LOGGER = getLogger(__name__)
 
-#meMood = self.settings.get("CurrentAttitude")
-#meMood = 'Sassi'
+
 DEFAULT_TEXT = "<volume level='50'><pitch level='170'>"
 DEFAULT_TEXT2 = "<volume level='50'><pitch level='40'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
 #filename2 = '/opt/mycroft/skills/samples/joking.wav'
 uri = 'ws://localhost:8181/core'
+#sample_rate_changer
 
 note_freqs = [
     #  C       C#       D      D#      E       F       F#      G       G#      A       A#      B
@@ -82,8 +82,31 @@ def generate_r2d2_message(filename):
     for _ in range(random.randint(min_msg_len, max_msg_len)):
         r2d2_message.append(note_freqs[random.randint(0, len(note_freqs) - 1)])
 
-    sample_rate = 4000  # 8000 Hz
-    dot_dur = 0.160  # 80 ms
+    sample_rate = 8000  # 8000 Hz
+    dot_dur = 0.80  # 80 ms
+    volume = 0.10  # 80%
+
+    wave = WaveFile(sample_rate)
+    wave_duration = 0
+    wave_data = []
+    for freq in r2d2_message:
+        wave_duration += dot_dur
+        wave_data += generate_sin_wave(sample_rate, freq, dot_dur, volume)
+    wave.add_data_subchunk(wave_duration, wave_data)
+    wave.save(filename)
+ 
+def generate_r2d2_message2(filename):
+    """
+    Generate R2D2 message and save to `filename`
+    """
+    min_msg_len = 1
+    max_msg_len = 20
+    r2d2_message = []
+    for _ in range(random.randint(min_msg_len, max_msg_len)):
+        r2d2_message.append(note_freqs[random.randint(0, len(note_freqs) - 1)])
+
+    sample_rate = 2000  # 8000 Hz
+    dot_dur = 1.20  # 80 ms
     volume = 0.10  # 80%
 
     wave = WaveFile(sample_rate)
@@ -190,6 +213,14 @@ class PoliteSkill(FallbackSkill):
         os.remove(filename)
         send_message('recognizer_loop:audio_output_end', '{}')
 
+    def r2d2talk2(self, filename):
+        filename = '/tmp/r2d2.wav'
+        generate_r2d2_message2(filename)
+        send_message('recognizer_loop:audio_output_start', '{}')
+        self.play(filename)
+        os.remove(filename)
+        send_message('recognizer_loop:audio_output_end', '{}')
+        
     def play(self,filename):
         cmd = ['aplay', str(filename)]
         with tempfile.TemporaryFile() as f:
@@ -208,8 +239,10 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 1 and self.settings['CurrentAttitude'] == 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
-        elif rnd == 2:
+        elif rnd == 2 and self.settings['CurrentAttitude'] == 'Sassi':
             self.r2d2talk('/tmp/r2d2.wav')
+        elif rnd == 2 and self.settings['CurrentAttitude'] == 'Classy':
+            self.r2d2talk2('/tmp/r2d2.wav')
             # self.play('/opt/mycroft/skills/samples/joking.wav')
         elif rnd == 3 and self.settings['CurrentAttitude'] == 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
