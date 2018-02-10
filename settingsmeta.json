@@ -1,18 +1,18 @@
 {
-    "name": "MoodSwinger",
+    "name": "Mood Swinger",
     "skillMetadata": {
         "sections": [
             {
-                "name": "Change Mycroft's personality",
+                "name": "Change Mycroft's mood",
                 "fields": [
                     {
                         "type": "label",
-                        "label": "Set the mood and add new responses for when Mycroft doesn't understand the question."
+                        "label": "Choose between the following attitudes:<ul><li>Sassi (sarcasm)</li><li>Classy (polite)</li>"
                     },
                     {
                         "name": "CurrentAttitude",
-                        "type": "select",
-                        "options": "Default|default;Sassi|Sassi;Classy|Classy;Creepy|Creepy;Borg|Borg",
+                        "type": "text",
+                        "label": "Mood",
                         "value": "Sassi"
                     }
                 ]
