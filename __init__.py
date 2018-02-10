@@ -157,6 +157,20 @@ class PoliteSkill(FallbackSkill):
         meMood = 'Classy'
         self.settings['CurrentAttitude'] = meMood
         self.speak(meMood)
+    
+    @intent_handler(IntentBuilder("SetAttitudeIntent3").require("SetAttitudeKeyword3"))
+    def handle_set_attitude_intent3(self, message):
+        #self.speak_dialog("tellattitude3")
+        meMood = 'Creepy'
+        self.settings['CurrentAttitude'] = meMood
+        self.speak(meMood)
+    
+    @intent_handler(IntentBuilder("SetAttitudeIntent4").require("SetAttitudeKeyword4"))
+    def handle_set_attitude_intent4(self, message):
+        #self.speak_dialog("tellattitude4")
+        meMood = 'Borg'
+        self.settings['CurrentAttitude'] = meMood
+        self.speak(meMood)
 
     def stop(self):
         pass
