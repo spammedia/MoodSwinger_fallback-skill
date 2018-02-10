@@ -28,9 +28,7 @@ DEFAULT_TEXT = "<volume level='50'><pitch level='170'>"
 DEFAULT_TEXT2 = "<volume level='50'><pitch level='40'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
-#filename2 = '/opt/mycroft/skills/samples/joking.wav'
 uri = 'ws://localhost:8181/core'
-#sample_rate_changer
 
 note_freqs = [
     #  C       C#       D      D#      E       F       F#      G       G#      A       A#      B
@@ -68,7 +66,7 @@ def generate_sin_wave(sample_rate, frequency, duration, amplitude):
     samples_num = int(duration * sample_rate)
     volume = amplitude * 32767
     for n in range(samples_num):
-        value = math.sin(2 * math.pi * n * frequency / sample_rate / 2)
+        value = math.sin(2 * math.pi * n * frequency / sample_rate)
         data.append(int(value * volume))
     return data
 
@@ -83,7 +81,7 @@ def generate_r2d2_message(filename):
         r2d2_message.append(note_freqs[random.randint(0, len(note_freqs) - 1)])
 
     sample_rate = 8000  # 8000 Hz
-    dot_dur = 0.80  # 80 ms
+    dot_dur = 0.080  # 80 ms
     volume = 0.10  # 80%
 
     wave = WaveFile(sample_rate)
