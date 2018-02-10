@@ -12,8 +12,7 @@
                     {
                         "name": "CurrentAttitude",
                         "type": "select",
-                        "label": "Choose between the following attitudes:",
-                        "options": Sassi;Classy;Creepy;Borg",
+                        "options": "Default|default;Sassi|Sassi;Classy|Classy;Creepy|Creepy;Borg|Borg",
                         "value": "Sassi"
                     }
                 ]
