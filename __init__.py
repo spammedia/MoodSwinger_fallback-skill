@@ -26,6 +26,8 @@ LOGGER = getLogger(__name__)
 
 DEFAULT_TEXT = "<volume level='50'><pitch level='170'>"
 DEFAULT_TEXT2 = "<volume level='50'><pitch level='40'>"
+DEFAULT_TEXT3 = "<volume level='50'><pitch level='240'>"
+DEFAULT_TEXT4 = "<volume level='50'><pitch level='15'>"
 DEFAULT_LANGUAGE = 'en-GB'
 filename = '/tmp/r2d2.wav'
 uri = 'ws://localhost:8181/core'
@@ -228,6 +230,10 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
         elif rnd == 1 and self.settings['CurrentAttitude'] == 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
+        elif rnd == 1 and self.settings['CurrentAttitude'] == 'Creepy':
+            self.say(DEFAULT_TEXT3 + txt,DEFAULT_LANGUAGE)
+        elif rnd == 1 and self.settings['CurrentAttitude'] == 'Borg':
+            self.say(DEFAULT_TEXT4 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
             #self.play('/opt/mycroft/skills/samples/joking.wav')
@@ -235,6 +241,10 @@ class PoliteSkill(FallbackSkill):
             self.speak_dialog('sarcasm', {'talk': txt})
         elif rnd == 3 and self.settings['CurrentAttitude'] == 'Classy':
             self.speak_dialog('polite', {'talk': txt})
+        elif rnd == 3 and self.settings['CurrentAttitude'] == 'Creepy':
+            self.speak_dialog('creepy', {'talk': txt})
+        elif rnd == 3 and self.settings['CurrentAttitude'] == 'Borg':
+            self.speak_dialog('borg', {'talk': txt})
         return True
 
 
