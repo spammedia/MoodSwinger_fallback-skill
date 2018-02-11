@@ -220,7 +220,7 @@ class PoliteSkill(FallbackSkill):
         play_wav( self.settings.get('samplesdir')+filename )
 
     def handle_fallback(self, message):
-        self.settings['samplesdir'] = 'samples/'
+        self.settings['samplesdir'] = 'home/spammedia/moodswinger/samples/'
         txt = message.data.get("utterance")
         #meMood = self.settings.get("CurrentAttitude", "")
         self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
