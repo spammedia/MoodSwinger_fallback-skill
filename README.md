@@ -1,4 +1,4 @@
-## MoodSwinger-fallbackskill
+## MoodSwinger fallback skill
 Under Construction..
 
 Fallback for when Mycroft doesn't know the answer
