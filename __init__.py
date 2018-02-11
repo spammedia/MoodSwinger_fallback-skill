@@ -176,9 +176,6 @@ class PoliteSkill(FallbackSkill):
 
     def stop(self):
         pass
-
-    #def play2(self, filename2):
-        #play_wav( self.filename2 )
         
     def say(self,text,lang):
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
@@ -218,8 +215,12 @@ class PoliteSkill(FallbackSkill):
             subprocess.call(cmd, stdout=f, stderr=f)
             f.seek(0)
             output = f.read()
+ 
+    def playsample(self, filename):
+        play_wav( self.settings.get('resdir')+filename )
 
     def handle_fallback(self, message):
+        self.settings['resdir'] = '/opt/mycroft/skills/skill-trivia/samples/'
         txt = message.data.get("utterance")
         #meMood = self.settings.get("CurrentAttitude", "")
         self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
@@ -231,12 +232,12 @@ class PoliteSkill(FallbackSkill):
         elif rnd == 1 and self.settings['CurrentAttitude'] == 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
         elif rnd == 1 and self.settings['CurrentAttitude'] == 'Creepy':
-            self.say(DEFAULT_TEXT3 + txt,DEFAULT_LANGUAGE)
+            #self.say(DEFAULT_TEXT3 + txt,DEFAULT_LANGUAGE)
+            self.playsample( 'joking.wav' )
         elif rnd == 1 and self.settings['CurrentAttitude'] == 'Borg':
             self.say(DEFAULT_TEXT4 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            #self.play('/opt/mycroft/skills/samples/joking.wav')
         elif rnd == 3 and self.settings['CurrentAttitude'] == 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
         elif rnd == 3 and self.settings['CurrentAttitude'] == 'Classy':
