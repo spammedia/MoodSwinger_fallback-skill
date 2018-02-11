@@ -1,6 +1,6 @@
-# Funny fallbackskill
-# Add more sarcasm to your Mycroft
-# Install prereq picotts with 'sudo apt-get libttspico-utils' first
+# MoodSwinger fallback skill
+# Add more personality to your Mycroft
+# Install prereq picotts with 'sudo apt-get install -y libttspico-utils' first
 
 from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill, intent_handler
@@ -217,10 +217,10 @@ class PoliteSkill(FallbackSkill):
             output = f.read()
  
     def playsample(self, filename):
-        play_wav( self.settings.get('resdir')+filename )
+        play_wav( self.settings.get('samplesdir')+filename )
 
     def handle_fallback(self, message):
-        self.settings['resdir'] = '/samples/'
+        self.settings['samplesdir'] = 'samples/'
         txt = message.data.get("utterance")
         #meMood = self.settings.get("CurrentAttitude", "")
         self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
