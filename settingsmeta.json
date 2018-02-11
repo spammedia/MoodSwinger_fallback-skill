@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "type": "label",
-                        "label": "Choose between the following attitudes:<ul><li>Sassi (sarcasm)</li><li>Classy (polite)</li>"
+                        "label": "Choose between the following attitudes:<ul><li>Sassi</li><li>Classy</li><li>Creepy</li><li>Borg</li>"
                     },
                     {
                         "name": "CurrentAttitude",
