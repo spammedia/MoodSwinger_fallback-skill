@@ -7,6 +7,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.skills.core import FallbackSkill
 from mycroft.util import play_wav
 from mycroft.util.log import getLogger
+from mycroft.util import resolve_resource_file
 from mycroft.api import Api
 import tempfile
 import subprocess
