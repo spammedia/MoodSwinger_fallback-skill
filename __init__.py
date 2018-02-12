@@ -239,7 +239,6 @@ class PoliteSkill(FallbackSkill):
             self.say(DEFAULT_TEXT4 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-            return True
         elif rnd == 3 and meMood == 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
         elif rnd == 3 and meMood == 'Classy':
@@ -248,9 +247,7 @@ class PoliteSkill(FallbackSkill):
             self.speak_dialog('creepy', {'talk': txt})
         elif rnd == 3 and meMood == 'Borg':
             self.speak_dialog('borg', {'talk': txt})
-        else:
-            self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-            return True
+        return True
 
 
 def create_skill():
