@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "type": "label",
-                        "label": "Select mood and responses for when Mycroft doesn't understand the question."
+                        "label": "Select mood and response type for when Mycroft doesn't understand the question."
                     },
                     {
                         "name": "CurrentAttitude",
