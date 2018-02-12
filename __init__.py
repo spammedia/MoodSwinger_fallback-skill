@@ -222,29 +222,29 @@ class PoliteSkill(FallbackSkill):
     def handle_fallback(self, message):
         #self.settings['resdir'] = 'mycroft/res/'
         txt = message.data.get("utterance")
-        #meMood = self.settings.get("CurrentAttitude", "")
+        meMood = self.settings.get("CurrentAttitude")
         self.settings['CurrentAttitude'] = self.settings.get('CurrentAttitude')
         #self.speak(self.settings['CurrentAttitude'])
         rnd = random.randint(1, 3)
-        LOGGER.debug("The meMood data is: {}".format(self.settings['CurrentAttitude']))
-        if rnd == 1 and self.settings['CurrentAttitude'] == 'Sassi':
+        LOGGER.debug("The meMood data is: {}".format( meMood ))
+        if rnd == 1 and meMood == 'Sassi':
             self.say(DEFAULT_TEXT + txt,DEFAULT_LANGUAGE)
-        elif rnd == 1 and self.settings['CurrentAttitude'] == 'Classy':
+        elif rnd == 1 and meMood == 'Classy':
             self.say(DEFAULT_TEXT2 + txt,DEFAULT_LANGUAGE)
-        elif rnd == 1 and self.settings['CurrentAttitude'] == 'Creepy':
+        elif rnd == 1 and meMood == 'Creepy':
             #self.say(DEFAULT_TEXT3 + txt,DEFAULT_LANGUAGE)
             self.playsample( 'joking.wav' )
-        elif rnd == 1 and self.settings['CurrentAttitude'] == 'Borg':
+        elif rnd == 1 and meMood == 'Borg':
             self.say(DEFAULT_TEXT4 + txt,DEFAULT_LANGUAGE)
         elif rnd == 2:
             self.r2d2talk('/tmp/r2d2.wav')
-        elif rnd == 3 and self.settings['CurrentAttitude'] == 'Sassi':
+        elif rnd == 3 and meMood == 'Sassi':
             self.speak_dialog('sarcasm', {'talk': txt})
-        elif rnd == 3 and self.settings['CurrentAttitude'] == 'Classy':
+        elif rnd == 3 and meMood == 'Classy':
             self.speak_dialog('polite', {'talk': txt})
-        elif rnd == 3 and self.settings['CurrentAttitude'] == 'Creepy':
+        elif rnd == 3 and meMood == 'Creepy':
             self.speak_dialog('creepy', {'talk': txt})
-        elif rnd == 3 and self.settings['CurrentAttitude'] == 'Borg':
+        elif rnd == 3 and meMood == 'Borg':
             self.speak_dialog('borg', {'talk': txt})
         return True
 
